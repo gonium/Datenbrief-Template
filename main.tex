@@ -1,0 +1,212 @@
+%---------------------------------------------------------------------------
+% scrlttr2.tex v0.3. (c) by Juergen Fenn <juergen.fenn@gmx.de>
+% Template for a letter to be typeset with scrlttr2.cls from KOMA-Script.
+% Latest version of the LaTeX Project Public License is applicable. 
+% File may not be modified and redistributed under the same name 
+% without the author's prior consent.
+%---------------------------------------------------------------------------
+\documentclass%%
+%---------------------------------------------------------------------------
+  [fontsize=12pt,%%          Schriftgroesse
+%---------------------------------------------------------------------------
+% Satzspiegel
+   paper=a4,%%               Papierformat
+   enlargefirstpage=on,%%    Erste Seite anders
+   pagenumber=headright,%%   Seitenzahl oben mittig
+%---------------------------------------------------------------------------
+% Layout
+   headsepline=on,%%         Linie unter der Seitenzahl
+   parskip=half,%%           Abstand zwischen Absaetzen
+   %sections,
+%---------------------------------------------------------------------------
+% Briefkopf und Anschrift
+   fromalign=right,%%        Plazierung des Briefkopfs
+   fromphone=on,%%           Telefonnummer im Absender
+   fromrule=off,%%           Linie im Absender (aftername, afteraddress)
+   fromfax=off,%%            Faxnummer
+   fromemail=off,%%          Emailadresse
+   fromurl=off,%%            Homepage
+   fromlogo=off,%%           Firmenlogo
+   addrfield=on,%%           Adressfeld fuer Fensterkuverts
+   backaddress=on,%%          ...und Absender im Fenster
+   subject=beforeopening,%%  Plazierung der Betreffzeile
+   locfield=narrow,%%        zusaetzliches Feld fuer Absender
+   foldmarks=on,%%           Faltmarken setzen
+   numericaldate=off,%%      Datum numerisch ausgeben
+   refline=narrow,%%         Geschaeftszeile im Satzspiegel
+%---------------------------------------------------------------------------
+% Formatierung
+   draft=false%%                Entwurfsmodus
+]{scrlttr2}
+%---------------------------------------------------------------------------
+\usepackage{ngerman}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\RequirePackage{graphicx}
+\usepackage{url} 
+\usepackage{eurosym} 
+\usepackage{advdate} 
+% Use URW Garamond No. 8 as a default font. (getnonfreefonts)
+\renewcommand{\rmdefault}{ugm}
+% Optima as a sans serif font.
+\renewcommand*\sfdefault{uop}
+\usepackage[protrusion=true,expansion=true]{microtype}
+\clubpenalty=3000 % adjust for widows and orphans 10000 is max
+\widowpenalty=3000 % adjust for widows and orphans 10000 is max
+%---------------------------------------------------------------------------
+% Fonts
+\setkomafont{fromname}{\sffamily \LARGE}
+\setkomafont{fromaddress}{\sffamily}%% statt \small
+\setkomafont{pagenumber}{\sffamily}
+\setkomafont{subject}{\mdseries}
+\setkomafont{backaddress}{\sffamily}
+%\usepackage{mathptmx}%% Schrift Times
+%\usepackage{mathpazo}%% Schrift Palatino
+%\setkomafont{fromname}{\LARGE}
+%---------------------------------------------------------------------------
+\begin{document}
+%---------------------------------------------------------------------------
+% Briefstil und Position des Briefkopfs
+\LoadLetterOption{DIN} %% oder: DINmtext, SN, SNleft, KOMAold.
+\makeatletter
+\@setplength{firstheadvpos}{5mm}
+\@setplength{firstheadwidth}{\paperwidth}
+\ifdim \useplength{toaddrhpos}>\z@
+  \@addtoplength[-2]{firstheadwidth}{\useplength{toaddrhpos}}
+\else
+  \@addtoplength[2]{firstheadwidth}{\useplength{toaddrhpos}}
+\fi
+\@setplength{foldmarkhpos}{6.5mm}
+\makeatother
+%---------------------------------------------------------------------------
+% Absender
+\setkomavar{fromname}{Friedrich Nord}
+\setkomavar{fromaddress}{Lolwut 2\\27182 Bielefeld}
+\setkomavar{fromphone}{+49 (0) 678 2342}
+\setkomavar{fromemail}{f.nord@cheezburge.rz}
+\setkomavar{fromurl}{http://cheezburge.rz}
+\setkomavar{signature}{F. Nord}
+%\setkomavar{fromlogo}{\large{\textbf{\sffamily{Friedrich Nord}}}}
+\renewcommand{\phonename}{Telefon}
+\setkomavar{backaddressseparator}{, }
+%\setkomavar{frombank}{}
+%\setkomavar{location}{\\[8ex]\raggedleft{\footnotesize{\usekomavar{fromaddress}\\
+%      Telefon:\ usekomavar{fromphone}}}}%% Neben dem Adressfenster
+%---------------------------------------------------------------------------
+% Briefkopf
+\firsthead{
+%\begin{tabular}[h]{lr}
+%  \hspace{15.5cm}&
+%  \begin{minipage}[t]{.95\textwidth} 
+    \raggedleft
+    {
+    {\large{\textbf{\sffamily{\usekomavar{fromname}}}}}\\ 
+    \mdseries\vspace{2mm}
+    \usekomavar{fromaddress}\\
+    Tel. \usekomavar{fromphone}\\ 
+    \usekomavar{fromemail}
+    }
+%  \end{minipage}
+%\end{tabular}
+}
+%---------------------------------------------------------------------------
+\firstfoot{\tiny{Proudly made using \LaTeX, VIM, Make \& Coffee.}}
+%---------------------------------------------------------------------------
+% Geschaeftszeilenfelder
+\setkomavar{place}{Bielefeld}
+\setkomavar{placeseparator}{, den }
+\setkomavar{date}{\today}
+%\setkomavar{yourmail}{24.06.2010}%% 'Ihr Schreiben...'
+%\setkomavar{yourref} {S1/Cm-Vm}%%    'Ihr Zeichen...'
+%\setkomavar{myref}{}%%      Unser Zeichen
+%\setkomavar{invoice}{123}%% Rechnungsnummer
+%\setkomavar{phoneseparator}{}
+%---------------------------------------------------------------------------
+% Versendungsart
+%\setkomavar{specialmail}{Einschreiben mit Rückschein}
+%---------------------------------------------------------------------------
+% Anlage neu definieren
+\renewcommand{\enclname}{Anlage}
+\setkomavar{enclseparator}{: }
+%---------------------------------------------------------------------------
+% Seitenstil
+\pagestyle{plain}%% keine Header in der Kopfzeile
+%---------------------------------------------------------------------------
+\begin{letter}{
+Teh Evil Overlord\\
+blah 2\par
+12345 blubb
+}
+%---------------------------------------------------------------------------
+% Weitere Optionen
+\KOMAoptions{%%
+}
+%---------------------------------------------------------------------------
+\setkomavar{subject}{Antrag auf Auskunftserteilung gemäß §34 BDSG sowie Widerspruch
+nach §24(4) BDSG}
+%---------------------------------------------------------------------------
+\opening{Sehr geehrte Damen und Herren,}
+
+ich habe am 19.05.2011 bei Ihnen übernachtet. Da sie dabei
+personenbezogene Daten über mich verarbeitet haben,
+bitte ich Sie um Auskunft über alle
+zu meiner Person bei Ihnen gespeicherten Daten gemäß §34 BDSG:
+
+\begin{enumerate}
+  \item Welche personenbezogenen Daten über mich werden von Ihrem 
+    Unternehmen gespeichert? Hierbei bitte ich Sie um Auskunft über 
+    die gespeicherten Daten selbst und nicht 
+    nur über die Art von Daten, die Sie gespeichert haben.
+  \item Falls ich Ihnen diese Daten nicht selbst mitgeteilt habe: Woher 
+    und zu welchem Zeitpunkt hat Ihr Unternehmen diese Daten bezogen?
+  \item An welche Empfänger --- auch innerhalb Ihrer Firmengruppe ---
+    wurden oder werden diese Daten durch Ihr Unternehmen weitergegeben?
+  \item Zu welchen Zwecken speichert Ihr Unternehmen diese Daten?
+\end{enumerate}
+
+Ich bitte Sie, die Auskunft bis zum
+\begin{center}
+  \DayAfter[15]
+\end{center}
+zu erteilen. Bitte bestätigen Sie mir kurz den Eingang dieser Nachricht und
+senden Sie mir die Auskunft \emph{postalisch} zu. Sollten Sie --- wider meiner
+Erwartung --- dieses Schreiben ignorieren, so werde ich mich an den
+zuständigen Landesdatenschutzbeauftragten wenden. Ausserdem behalte ich
+mir in diesem Fall weitere rechtliche Schritte vor.
+
+Weiterhin nutze ich diese Gelegenheit, der Weitergabe und Nutzung meiner
+Daten für Zwecke der Werbung oder der Markt- oder Meinungsforschung zu
+widersprechen (§28 Absatz 4 BDSG). Sie sind daher verpflichtet, die
+Daten unverzüglich für diese Zwecke zu sperren.  Ebenso widerspreche ich
+der Weitergabe meiner Daten an andere Unternehmen, auch \emph{innerhalb} Ihrer
+Firmengruppe.
+
+\closing{Mit freundlichen Grüßen,\\
+%\vspace{1cm}\includegraphics[width=5cm]{md-signature.jpg}
+}
+%---------------------------------------------------------------------------
+\ps{PS:
+Ich kann verstehen, dass mein Auskunftsersuchen Ihnen Arbeit
+verursacht. Eine Alternative wäre es, den \emph{Datenbrief}
+umzusetzen und einmal im Jahr bei einem Kundenkontakt (z.B. der
+Werbesendung, die Sie mir geschickt haben) über die bei Ihnen
+gespeicherten Kundendaten zu informieren. Dies würde erheblich dazu beitragen,
+Ihre Datenverarbeitung transparent und im Sinne des Kunden zu gestalten.
+Einen Einstieg in dieses Thema finden Sie hier:
+
+\begin{center}
+  \url{http://de.wikipedia.org/wiki/Datenbrief}
+\end{center}
+
+Mit diesem Vorgehen könnten Sie einerseits Ihre Arbeitslast durch
+Auskunftsersuchen wie meines reduzieren und andererseits einen
+Mehrwert für Ihre Kunden schaffen. Gleichzeitig könnten Sie auch
+Ihre Stammdaten auf Ihre Aktualität überprüfen.  }
+%\encl{} \cc{}
+%---------------------------------------------------------------------------
+\end{letter}
+%---------------------------------------------------------------------------
+\end{document}
+%---------------------------------------------------------------------------
+
+% vim: set spell spelllang=DE setf tex :EOF
